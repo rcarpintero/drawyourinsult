@@ -21,7 +21,6 @@ func loadInsults() {
     for scanner.Scan() {
         insults = append(insults, scanner.Text())
     }
-//    log.Fatal(insults)
 }
 
 func random(max int) int {
