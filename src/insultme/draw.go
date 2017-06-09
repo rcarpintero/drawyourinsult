@@ -23,17 +23,17 @@ func loadInsults() {
     }
 }
 
-func random(max int) int {
-    rand.Seed(time.Now().Unix())
-    return rand.Intn(max)
+func aRandomInsult() string {
+    position := rand.Intn(len(insults) - 1)
+    return insults[position]
 }
 
 func InsultEndpoint(w http.ResponseWriter, req *http.Request) {
-    insult := insults[random(len(insults) - 1)]
-    json.NewEncoder(w).Encode(insult)
+    json.NewEncoder(w).Encode(aRandomInsult())
 }
 
 func main() {
+    rand.Seed(time.Now().Unix())
     loadInsults()
     router := mux.NewRouter()
     router.HandleFunc("/drawinsult", InsultEndpoint).Methods("GET")
