@@ -14,7 +14,7 @@ import (
 var insults []string
 
 func loadInsults() {
-    file, err := os.Open("oinsult_list")
+    file, err := os.Open("insult_list")
     if err != nil {
         log.Fatal("Cannot load insults!! -> ", err)
     }
