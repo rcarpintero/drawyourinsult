@@ -8,14 +8,16 @@ import (
     "encoding/json"
     "log"
     "net/http"
- 
     "github.com/gorilla/mux"
 )
 
 var insults []string
 
 func loadInsults() {
-    file, _ := os.Open("insult_list")
+    file, err := os.Open("oinsult_list")
+    if err != nil {
+        log.Fatal("Cannot load insults!! -> ", err)
+    }
     defer file.Close()
     scanner := bufio.NewScanner(file)
     for scanner.Scan() {
